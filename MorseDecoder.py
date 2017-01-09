@@ -54,6 +54,5 @@ def decodeMorse(inputMorse): #Decoder function
                     translatedLetter = key
                     break # Once found, exit
 
-            print(translatedLetter),
-        print(" "),
-
+            print(translatedLetter, end="")
+        print(" ", end="")
