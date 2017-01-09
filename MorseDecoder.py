@@ -24,7 +24,17 @@ morseDictionary = {
     "w":".--",
     "x":"-..-",
     "y":"-.--",
-    "z":"--.."
+    "z":"--..",
+    "0":"-----",
+    "1":".----",
+    "2":"..---",
+    "3":"...--",
+    "4":"....-",
+    "5":".....",
+    "6":"-....",
+    "7":"--...",
+    "8":"---..",
+    "9":"----."
 }
 def decodeMorse(inputMorse): #Decoder function
     wordList = []
@@ -34,6 +44,16 @@ def decodeMorse(inputMorse): #Decoder function
 
     for word in wordList:
         letterList = word.split(" ")
-        for letter in letterList: #Clear whitespace from each letter
-            letter.strip()
+        for wMorseLetter in letterList: #Clear whitespace from each letter
+            nwMorseLet = wMorseLetter.strip().replace("_","-")
+
+            translatedLetter = "!" # The default error symbol will be ! for untranslatable characters
+
+            for key in morseDictionary: # Loop over morse dict to get needed letter
+                if morseDictionary.get(key) == nwMorseLet:
+                    translatedLetter = key
+                    break # Once found, exit
+
+            print(translatedLetter),
+        print(" "),
 
