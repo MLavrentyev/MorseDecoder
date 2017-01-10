@@ -1,4 +1,6 @@
 import re
+import winsound
+import time
 
 morseDictionary = {
     "a":".-",
@@ -79,5 +81,30 @@ def encodeMorse(inputText): #Encoder function
     print(returnString)
     return returnString
 
+def beepCode(morseText):
+    frequency = 500
+    dotBeepLength = 100
+    dashBeepLength = 200
+    letterSpace = .200
+    wordSpace = .500
+
+    morseTextSplitWords = morseText.split(" / ")
+    for word in morseTextSplitWords:
+        letters = word.split(" ")
+        for letter in letters:
+            dotDashSeq = list(letter)
+            for dotDash in dotDashSeq:
+                if(dotDash == "-"):
+                    winsound.Beep(frequency,dashBeepLength)
+                elif(dotDash == "."):
+                    winsound.Beep(frequency,dotBeepLength)
+            # End parsing each dot/dash
+            time.sleep(letterSpace)
+        #End parsing letters
+        time.sleep(wordSpace)
+    #End parsing words
+
+
 encodeMorse("Hello World")
 decodeMorse(encodeMorse("Hello World"))
+beepCode(encodeMorse("Hello World"))
