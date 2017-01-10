@@ -1,3 +1,5 @@
+import re
+
 morseDictionary = {
     "a":".-",
     "b":"-...",
@@ -37,6 +39,7 @@ morseDictionary = {
     "9":"----."
 }
 def decodeMorse(inputMorse): #Decoder function
+    returnString = ""
     wordList = []
     for word in inputMorse.split(" / "): #Split morse code by word
         word.strip()
@@ -54,5 +57,27 @@ def decodeMorse(inputMorse): #Decoder function
                     translatedLetter = key
                     break # Once found, exit
 
-            print(translatedLetter, end="")
-        print(" ", end="")
+            returnString += translatedLetter
+        returnString += " "
+
+    print(returnString)
+    return returnString
+
+def encodeMorse(inputText): #Encoder function
+    cInputText = re.sub("[^A-za-z0-9\s/]", "", inputText) #Clean input to only have alpha numeric chars
+    cInputText = cInputText.lower() #lower case everything
+    returnString = ""
+    words = cInputText.split(" ")
+    for word in words:
+        word.strip()
+        letters = list(word)
+        for letter in letters:
+            returnString += morseDictionary.get(letter, "!") + " "
+
+        returnString += "/ "
+    returnString = returnString[:-3]
+    print(returnString)
+    return returnString
+
+encodeMorse("Hello World")
+decodeMorse(encodeMorse("Hello World"))
