@@ -85,8 +85,7 @@ def beepCode(morseText):
     frequency = 500
     dotBeepLength = 100
     dashBeepLength = 200
-    letterSpace = .200
-    wordSpace = .500
+    dihDatTimeSpace = 0.05
 
     morseTextSplitWords = morseText.split(" / ")
     for word in morseTextSplitWords:
@@ -98,13 +97,12 @@ def beepCode(morseText):
                     winsound.Beep(frequency,dashBeepLength)
                 elif(dotDash == "."):
                     winsound.Beep(frequency,dotBeepLength)
+                time.sleep(dihDatTimeSpace)
             # End parsing each dot/dash
-            time.sleep(letterSpace)
+            time.sleep(3*dihDatTimeSpace) # Letter time spacing (3x dih-dat spacing)
         #End parsing letters
-        time.sleep(wordSpace)
+        time.sleep(7*dihDatTimeSpace) # Word time spacing (7x dih-dat spacing)
     #End parsing words
 
 
-encodeMorse("Hello World")
-decodeMorse(encodeMorse("Hello World"))
 beepCode(encodeMorse("Hello World"))
