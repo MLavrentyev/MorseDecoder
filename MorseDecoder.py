@@ -84,7 +84,7 @@ def encodeMorse(inputText): #Encoder function
 def beepCode(morseText):
     frequency = 500
     dotBeepLength = 100
-    dashBeepLength = 200
+    dashBeepLength = 300
     dihDatTimeSpace = 0.05
 
     morseTextSplitWords = morseText.split(" / ")
